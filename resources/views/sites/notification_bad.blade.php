@@ -1,5 +1,5 @@
 Dear, {{ $user->name }}
-
+<br><br>
 Your URL monitored by Monik is down:<br><br>
 {{ $site->url }}
 <br><br><br>
