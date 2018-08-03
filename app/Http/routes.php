@@ -25,6 +25,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/sites', 'SitesController@index');
+Route::get('/site/{site}', 'SitesController@form');
 Route::post('/site', 'SitesController@store');
 Route::delete('/site/{site}', 'SitesController@destroy');
 

@@ -25,15 +25,18 @@ class SitesController extends Controller
 
     }
 
+    public function form(Site $site, Request $request)
+    {
+    	return view('sites.form',compact(['site']));
+    }
+
     public function store(Request $request)
     {
     	$this->validate($request, [
 			'url' => 'required|url|max:255',
 		]);
 
-		$data = $request->user()->sites()->create([
-			'url' => $request->url,
-		]);
+		$data = $request->user()->sites()->updateOrCreate(['id'=>$request->id],$request->all());
 
 		return redirect('/sites');
     }
