@@ -25,13 +25,17 @@ class Site extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function checkSiteURL($sid)
+    public function checkSiteURL()
     {
-    	$SS = $this::find($sid);
+    	$SS = $this;
     	//dd($SS->user);
     	echo $SS->url." (user: ".($SS->user->name).")";
-    	
+
+    	$host = parse_url($SS->url)['host'];
+		$SS->ip = gethostbyname($host);
+
 		$client = new Client();
+
 
 		try {
         	$res = @$client->request('HEAD', $SS->url);
@@ -60,7 +64,7 @@ class Site extends Model
 		else
 		{
 			// 0000-00-00 always shoud be zero after intval()
-			if ( ! intval($SS->first_error_tstamp) ) 
+			if ( ! intval($SS->first_error_tstamp) )
 				$SS->first_error_tstamp = date("Y-m-d H:i:s");
 
 
@@ -72,13 +76,13 @@ class Site extends Model
 				Mail::send('sites.notification_bad',['user'=>$SS->user,'site'=>$SS],function($m) use ($SS) {
 					$m->from('noreply@socmash.ru')->to($SS->user->email,$SS->user->name)->subject('Your web site is feeling bad :(');
 				});
-				
+
 			}
-			
+
 		}
 
         echo "\n\t$code\n";
-    	
+
 		$SS->last_check_tstamp = date("Y-m-d H:i:s");
     	$SS->save();
 

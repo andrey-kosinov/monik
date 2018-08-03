@@ -2,7 +2,6 @@
 
 namespace App\Console;
 
-use DB;
 use App\Site;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -29,12 +28,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
 
-            $Site = new Site();
-            $sites = DB::table('sites')->get();
+            $sites = Site::all();
 
-            foreach ($sites as $srow)
+            foreach ($sites as $site)
             {
-                $Site->checkSiteURL($srow->id);
+                $site->checkSiteURL();
             }
 
         })->everyMinute();

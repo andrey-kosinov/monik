@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/test', function () {
+    $site = App\Site::find(1);
+    $site->checkSiteURL();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +27,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/sites', 'SitesController@index');
 Route::post('/site', 'SitesController@store');
 Route::delete('/site/{site}', 'SitesController@destroy');
+

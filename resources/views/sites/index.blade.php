@@ -12,7 +12,9 @@
 		            @if (count($sites) > 0)
                     <table class="table table-striped task-table">
                         <thead>
+                        	<th>ID</th>
                             <th>URL</th>
+                            <th>IP</th>
                             <th>Last Check</th>
                             <th>Status</th>
                             <th>Errors</th>
@@ -21,7 +23,9 @@
                         <tbody>
                             @foreach ($sites as $site)
                                 <tr class="@if ($site->errors>0) error @else good @endif">
+                                	<td class="table-text"><div>{{ $site->id }}</div></td>
                                     <td class="table-text"><div>{{ $site->url }}</div></td>
+                                    <td class="table-text"><div>{{ $site->ip }}</div></td>
                                     <td class="table-date"><div>@if ($site->last_check_tstamp != "0000-00-00 00:00:00") {{ date('d/m H:i',strtotime($site->last_check_tstamp)) }} @else not checked @endif</div></td>
                                     <td class="status table-text"><div><em></em></div></td>
                                     <td class="table-text"><div style='padding-left:15px;'>{{ $site->errors }}</div></td>
@@ -45,9 +49,9 @@
                     </table>
                     @else
                         You don't have URLs to monitor. Don't wait just add one! ;)
-		            @endif                                      
+		            @endif
 
-                </div>                
+                </div>
 
             </div>
 
