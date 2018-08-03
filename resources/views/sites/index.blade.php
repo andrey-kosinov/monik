@@ -33,7 +33,7 @@
                                     <!-- Delete Button -->
                                     <td style='text-align:right; white-space:nowrap;'>
 
-										<a href="/site/{{ $site->id }}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+										<a href="/site/{{ $site->id }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
 
 	                                    @if ( ! Auth::guest() )
 	                                        <form action="{{url('site/' . $site->id)}}" method="POST" style="display:inline-block;">
