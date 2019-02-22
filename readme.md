@@ -1,8 +1,8 @@
 # Simple URL Monitoring Tool
 
-Made with Laravel Frame Work
+Made with Laravel Framework
 
-All you need is to add one line to crontab
+All you need is to add one line to crontab after installtion and migration
 
 "* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1" 
 
@@ -10,6 +10,6 @@ All you need is to add one line to crontab
 
 And that's it.
 
-Add URL you can in a web-interface in a browser
+Add your URL in the web interface with a browser
 
 Good luck!
