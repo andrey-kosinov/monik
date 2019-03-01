@@ -27,7 +27,7 @@ class SitesController extends Controller
 
     public function form(Site $site, Request $request)
     {
-    	return view('sites.form',compact(['site']));
+    	return view(isset($site->id) ? 'sites.form-full' : 'sites.form',compact(['site']));
     }
 
     public function store(Request $request)
