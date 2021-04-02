@@ -16,9 +16,9 @@ class ShowSites extends Component
 	public $isOpenCreateModal = false;
 	public $confirmDeleteModal = false;
 
-    public function render()
+    public function render(Request $req)
     {
-    	$sites = Site::all();
+    	$sites = $req->user()->sites;
         return view('livewire.show-sites',compact(['sites']));
     }
 
