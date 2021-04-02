@@ -1,1 +1,0 @@
-grant all on monik.* to monik@localhost identified by '123123'
